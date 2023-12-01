@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .selected-row {
+      background-color: #d3d3d3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="search-bar">
+  <input type="text" placeholder="Search..." id="searchInput">
+  <button class="search-icon" onclick="search()">Search</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Select All <input type="checkbox" id="selectAll" onclick="selectAll()"></th>
+      <th>User ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+    <!-- Table rows will be dynamically added here -->
+    <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>1</td>
+        <td contenteditable="false">Aaron Miles</td>
+        <td contenteditable="false">aaron@mailinator.com</td>
+        <td contenteditable="false">member</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+      <!-- Add more rows as needed -->
+      <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>2</td>
+        <td contenteditable="false">Aishwarya Naik</td>
+        <td contenteditable="false">aishwarya@mailinator.com</td>
+        <td contenteditable="false">member</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>3</td>
+        <td contenteditable="false">Arvind Kumar</td>
+        <td contenteditable="false">arvind@mailinator.com</td>
+        <td contenteditable="false">admin</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>4</td>
+        <td contenteditable="false">Caterina Binotto</td>
+        <td contenteditable="false">caterina@mailinator.com</td>
+        <td contenteditable="false">member</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>5</td>
+        <td contenteditable="false">Chetan Kumar</td>
+        <td contenteditable="false">chetan@mailinator.com</td>
+        <td contenteditable="false">member</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>6</td>
+        <td contenteditable="false">Jim McClain</td>
+        <td contenteditable="false">jim@mailinator.com</td>
+        <td contenteditable="false">member</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>7</td>
+        <td contenteditable="false">Mahaveer Singh</td>
+        <td contenteditable="false">mahaveer@mailinator.com</td>
+        <td contenteditable="false">member</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>8</td>
+        <td contenteditable="false">Rahul Jain</td>
+        <td contenteditable="false">rahul@mailinator.com</td>
+        <td contenteditable="false">admin</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="rowCheckbox"></td>
+        <td>9</td>
+        <td contenteditable="false">Rizan Khan</td>
+        <td contenteditable="false">rizan@mailinator.com</td>
+        <td contenteditable="false">member</td>
+        <td>
+          <button class="edit" onclick="editRow(this)">Edit</button>
+          <button class="save" onclick="saveRow(this)" style="display:none;">Save</button>
+          <button class="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+
+
+
+  </tbody>
+</table>
+
+<div class="pagination">
+  <button class="first-page" onclick="goToPage('first')">First</button>
+  <button class="previous-page" onclick="goToPage('previous')">Previous</button>
+  <span id="currentPage">Page 1</span>
+  <button class="next-page" onclick="goToPage('next')">Next</button>
+  <button class="last-page" onclick="goToPage('last')">Last</button>
+</div>
+
+<button onclick="deleteSelected()">Delete Selected</button>
+
+<script>
+  // JavaScript functions for handling UI actions go here
+
+  function search() {
+    // Implement search functionality
+  }
+
+  function selectAll() {
+    // Implement select/deselect all functionality
+  }
+
+  function goToPage(direction) {
+    // Implement pagination functionality
+  }
+
+  function deleteSelected() {
+    // Implement delete selected functionality
+  }
+</script>
+
+</body>
+</html>
